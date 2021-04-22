@@ -1,0 +1,40 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<table>
+    <thead>
+        <tr>
+            <th>Sunday</th>
+            <th>Monday</th>
+            <th>Tuesday</th>
+            <th>Wednesday</th>
+            <th>Thursday</th>
+            <th>Friday</th>
+            <th>Saturday</th>
+            <th>Sunday</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+           @{
+               DateTime getDate = DateTime.Now;
+               var firstDayOfTheMonth = new DateTime(getDate.Year, getDate.Month, 1);
+               var lastDayOfTheMonth = firstDayOfTheMonth.AddMonths(1).AddDays(-1);
+
+               var numberOfDays = Convert.ToInt16(lastDayOfTheMonth.ToString("dd"));
+               for (int i = 0; i < 42; i++)
+               {
+                   DateTime startDate = firstDayOfTheMonth.AddDays(-(int)firstDayOfTheMonth.DayOfWeek);
+                   DateTime date = startDate.AddDays(i);
+                   if (i % 7 == 0 && i > 0)
+                   {
+                    @:</tr><tr>
+                    // start a new row every 7 days
+                   }
+                <td>@date.Day</td>
+                   }
+               }
+        </tr>
+    </tbody>
+</table>

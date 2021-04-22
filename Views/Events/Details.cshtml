@@ -1,0 +1,54 @@
+﻿@model EventLocation;
+
+@{
+    ViewData["Title"] = "Location Details";
+}
+
+<h1>Event Details</h1>
+
+<div>
+    <h4></h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.LocationName)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.LocationLatitude)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.LocationLongitude)
+        </dt>
+        <dd class="col-sm-10">
+            <table class="table">
+                <tr>
+                    <th>Event Title</th>
+                    <th>Start Date</th>
+                    <th>End Date</th>
+                    <th>Description</th>
+                </tr>
+                @foreach (EventDetails eventDetails in Model.EventDetails)
+                {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => eventDetails.EventTitle)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => eventDetails.StartDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => eventDetails.EndDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => eventDetails.Description)
+                </td>
+            </tr>
+                }
+            </table>
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.LocationID">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>
